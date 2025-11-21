@@ -9,17 +9,21 @@ The setup runs entirely using Docker.
 MySQL → Kafka Connect (Source) → Kafka Topics → Kafka Connect (Sink) → PostgreSQL
 
 ## Folder Structure
+```
 kafka-connect/
 ├── docker-compose.yml
 ├── connectors/
 │   ├── mysql-source.json
 │   └── postgres-sink.json
 ├── README.md
+```
 
 ## How to Run
 
 ### Start Docker
+```
 docker compose up -d --build
+```
 
 ### Register the Connectors (wait ~1 minute)
 
