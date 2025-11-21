@@ -1,0 +1,26 @@
+{
+    "name": "postgres-sink-connector",
+    "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+        "tasks.max": "1",
+        "topics": "dbserver1.kafka_db.customers",
+        "connection.url": "jdbc:postgresql://postgres:5432/kafka_db",
+        "connection.user": "kafka",
+        "connection.password": "kafka",
+        "insert.mode": "upsert",
+        "pk.mode": "record_key",
+        "pk.fields": "id",
+        "auto.create": "true",
+        "auto.evolve": "true",
+        "delete.enabled": "true",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "transforms": "unwrap,route",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.unwrap.drop.tombstones": "false",
+        "transforms.unwrap.delete.handling.mode": "drop",
+        "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+        "transforms.route.regex": "([^.]+)\\.([^.]+)\\.([^.]+)",
+        "transforms.route.replacement": "$3"
+    }
+}

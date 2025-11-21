@@ -1,0 +1,32 @@
+{
+    "name": "mysql-source-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+        "tasks.max": "1",
+        "database.hostname": "mysql",
+        "database.port": "3306",
+        "database.server.id": "184054",
+        "database.server.name": "dbserver1",
+        "database.include.list": "kafka_db",
+        "table.include.list": "kafka_db.customers",
+        "database.history.kafka.bootstrap.servers": "kafka:9092",
+        "database.history.kafka.topic": "schema-changes.kafka_db",
+        "include.schema.changes": "false",
+        "transforms": "unwrap",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.unwrap.drop.tombstones": "false",
+        "transforms.unwrap.delete.handling.mode": "drop",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "database.user": "kafka",
+        "database.password": "kafka",
+        "database.connectionTimeZone": "UTC",
+        "database.ssl.mode": "disabled",
+        "database.history.skip.unparseable.ddl": "true",
+        "database.allowPublicKeyRetrieval": "true",
+        "database.useSSL": "false",
+        "database.useLegacyDatetimeCode": "false",
+        "database.serverTimezone": "UTC",
+        "database.connectionProperties": "useSSL=false;allowPublicKeyRetrieval=true;defaultAuthenticationPlugin=mysql_native_password"
+    }
+}
